@@ -24,7 +24,7 @@
 	</p>
 	<h2>sitenav:</h2>
 	<br /> <a href="/wayne/ceo" class="text-blue-500 hover:underline">CEO's Office</a> <br />
-	<p>Financial Reports (You are here)</p>
+	<p class="text-gray-400">Financial Reports (You are here)</p>
 	<a href="/wayne/ceo/comms" class="text-blue-500 hover:underline">Communication Center</a> <br />
     <br /> <br /> <br />
 	<div class="mx-auto w-[900px]">

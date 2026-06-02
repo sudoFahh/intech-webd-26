@@ -25,7 +25,7 @@
 <section class="p-8">
 <h1 class="text-3xl font-bold mb-4">The Batcave</h1>
 <p>Welcome to the Batcave, Batman. <br /> What tools would you like to use?</p> <br />
-<p>Batcomputer (You are here)</p>
+<p class="text-gray-400">Batcomputer (You are here)</p>
 <a href="/wayne/batman/arsenal" class="text-blue-500 hover:underline">Access Arsenal</a> <br/>
 <a href="/wayne/batman/missions" class="text-blue-500 hover:underline">Access Missions</a> <br />
 <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />

@@ -33,7 +33,7 @@
     <br />
     <a href="/wayne/ceo" class="text-blue-500 hover:underline">CEO's Office</a> <br />
     <a href="/wayne/ceo/financials" class="text-blue-500 hover:underline">Financial Reports</a> <br />
-    <p>Communication Center (You are here)</p> <br />
+    <p class="text-gray-400">Communication Center (You are here)</p> <br />
 <div class="flex gap-6">
 
     <!-- CONTACTS -->

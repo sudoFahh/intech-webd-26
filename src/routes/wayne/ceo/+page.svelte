@@ -27,7 +27,7 @@
     <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
     <h2>sitenav:</h2>
     <br />
-    <p>CEO's Office (You are here)</p>
+    <p class="text-gray-400">CEO's Office (You are here)</p>
     <a href="/wayne/ceo/financials" class="text-blue-500 hover:underline">Financial Reports</a> <br />
     <a href="/wayne/ceo/comms" class="text-blue-500 hover:underline">Communication Center</a> <br />
 
