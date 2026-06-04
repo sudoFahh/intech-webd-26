@@ -1,46 +1,57 @@
-<script>
-    import { onMount } from "svelte";
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { auth } from '$lib/firebase.client';
+  import { onAuthStateChanged, signOut } from 'firebase/auth';
+  import { goto } from '$app/navigation';
 
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return "";
-    }
+  let allowed = $state(false);
 
-    onMount(() => {
-        const access = getCookie("wayne_access_ceo");
+  onMount(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        goto('/');
+        return;
+      }
 
-        if (access !== "true") {
-            window.location.href = "/";
-        }
+      if (user.email === 'bruce@wayne.com') {
+        allowed = true;
+      } else {
+        goto('/');
+      }
     });
+  });
 
-    function logout() {
-        document.cookie = "wayne_access_ceo=; path=/; max-age=0";
-        window.location.href = "/internal";
-    }
+  async function logout() {
+    await signOut(auth);
+    goto('/');
+  }
 </script>
 
+{#if allowed}
 <main>
-    <h1>Wayne Internal Dashboard</h1>
-    <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
-    <h2>sitenav:</h2>
-    <br />
-    <p class="text-gray-400">CEO's Office (You are here)</p>
-    <a href="/wayne/ceo/financials" class="text-blue-500 hover:underline">Financial Reports</a> <br />
-    <a href="/wayne/ceo/comms" class="text-blue-500 hover:underline">Communication Center</a> <br />
+  <h1>Wayne Internal Dashboard</h1>
 
+  <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
+
+  <h2>sitenav:</h2>
     <br />
-    <section class="mb-6 p-4 border rounded">
+  <p class="text-gray-400">CEO's Office (You are here)</p>
+  <a href="/wayne/ceo/financials" class="text-blue-500 hover:underline">Financial Reports</a><br />
+  <a href="/wayne/ceo/comms" class="text-blue-500 hover:underline">Communication Center</a><br />
+
+  <section class="mb-6 p-4 border rounded">
     <h2 class="text-lg font-bold">EXECUTIVE STATUS</h2>
-    
+
     <div class="mt-2 text-sm space-y-1">
-        <p>Company Status: <span class="text-green-600">Stable</span></p>
-        <p>Global Operations: Active in 42 regions</p>
-        <p>Security Level: Tier 3 Clearance</p>
-        <p>Active Alerts: 0 Critical / 3 Monitoring</p>
+      <p>Company Status: Stable</p>
+      <p>Global Operations: Active in 42 regions</p>
+      <p>Security Level: Tier 3 Clearance</p>
+      <p>Active Alerts: 0 Critical / 3 Monitoring</p>
     </div>
-</section>
-<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" onclick={logout}>Log Out</button>
+  </section>
+
+  <button onclick={logout}>
+    Log Out
+  </button>
 </main>
+{/if}

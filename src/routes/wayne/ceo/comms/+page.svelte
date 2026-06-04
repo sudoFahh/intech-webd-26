@@ -1,4 +1,26 @@
 <script>
+    import { onMount } from 'svelte';
+  import { auth } from '$lib/firebase.client';
+  import { onAuthStateChanged, signOut } from 'firebase/auth';
+  import { goto } from '$app/navigation';
+
+  let allowed = $state(false);
+
+  onMount(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        goto('/');
+        return;
+      }
+
+      if (user.email === 'bruce@wayne.com') {
+        allowed = true;
+      } else {
+        goto('/');
+      }
+    });
+  });
+
     let activeChat = $state(null);
     let message = $state("");
     let chats = $state({
@@ -27,6 +49,7 @@
         message = "";
     }
 </script>
+{#if allowed}
     <h1>Wayne Internal Dashboard</h1>
     <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
     <h2>sitenav:</h2>
@@ -78,3 +101,4 @@
     </div>
 
 </div>
+{/if}

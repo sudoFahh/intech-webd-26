@@ -4,10 +4,7 @@
 	const targetSecret = 'brucewayneisbatman';
 	let isSecretRevealed = false;
     let key = '';
-    let key2 = '';
-    let key3 = '';
 
-	// Resets the buffer on a manual page refresh
 	onMount(() => {
 		sessionStorage.removeItem('batman_buffer');
 	});
@@ -30,10 +27,8 @@
 				isSecretRevealed = true;
 				sessionStorage.removeItem('batman_buffer');
                 key = Math.random().toString(36).substring(2, 15); // Generate a random key
-                key2 = Math.random().toString(36).substring(2, 15); // Generate a random key
-                key3 = Math.random().toString(36).substring(2, 15); // Generate a random key
-                console.log(`${key2}-${key}-${key3}`);
                 document.cookie = `batman_key=${key}; path=/; max-age=600`; // Set cookie for 10 mins
+				key = ""
 			}
 		}
 	}

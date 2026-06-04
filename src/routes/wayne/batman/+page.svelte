@@ -1,6 +1,25 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
+  import { auth } from '$lib/firebase.client';
+  import { onAuthStateChanged, signOut } from 'firebase/auth';
+  import { goto } from '$app/navigation';
 
+  let allowed = $state(false);
+
+  onMount(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        goto('/');
+        return;
+      }
+
+      if (user.email === 'batman@wayne.com' && getCookie("batman_key")) {
+        allowed = true;
+      } else {
+        goto('/');
+      }
+    });
+  });
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -8,19 +27,12 @@
         return "";
     }
 
-    onMount(() => {
-        const access = getCookie("wayne_access");
-
-        if (access !== "true") {
-            window.location.href = "/";
-        }
-    });
-
-    function logout() {
-        document.cookie = "wayne_access=; path=/; max-age=0";
-        window.location.href = "/internal";
-    }
+    async function logout() {
+        await signOut(auth);
+        goto('/');
+  }
 </script>
+{#if allowed}
 <main class="bg-[#0e0b0b] min-h-screen w-full text-white">
 <section class="p-8">
 <h1 class="text-3xl font-bold mb-4">The Batcave</h1>
@@ -39,3 +51,4 @@
   background: #0e0b0b;
     }
 </style>
+{/if}

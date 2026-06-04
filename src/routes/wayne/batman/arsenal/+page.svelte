@@ -1,79 +1,118 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
+    import { auth } from '$lib/firebase.client';
+    import { onAuthStateChanged, signOut } from 'firebase/auth';
+    import { goto } from '$app/navigation';
+    import { doc, getDoc, setDoc } from 'firebase/firestore';
+    import { db } from '$lib/firebase.client';
 
-    function getCookie(name: string): string {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop()?.split(';').shift() || "";
-        return "";
-    }
-
-    function setCookie(name: string, value: any): void {
-        document.cookie = `${name}=${JSON.stringify(value)}; path=/; max-age=86400`;
-    }
-
-    function loadState(): any {
-        const data = getCookie("bat_inventory");
-        if (data) {
-            try {
-                return JSON.parse(data);
-            } catch {
-                return null;
-            }
-        }
-        return null;
-    }
-
-    // Single cohesive state block tracking everything
-    let statee = $state({
-        devices: {
-            sonic: "OFFLINE",
-            emp: "OFFLINE",
-            gel: "OFFLINE",
-            batmobile: "NOT READY",
-            suit: "NOT READY"
-        },
-        inventory: {
-            batarang: 100,
-            smoke: 100,
-            claw: 100,
-            dart: 100,
-            suit: 100
-        }
-    });
-
-    // Helper functions to handle the toggles natively inside the state object
-    function toggleDevice(key: 'sonic' | 'emp' | 'gel') {
-        statee.devices[key] = statee.devices[key] === 'OFFLINE' ? 'ONLINE' : 'OFFLINE';
-        setCookie("bat_inventory", statee);
-    }
-
-    function toggleVehicleSuit(key: 'batmobile' | 'suit') {
-        statee.devices[key] = statee.devices[key] === 'NOT READY' ? 'READY' : 'NOT READY';
-        setCookie("bat_inventory", statee);
-    }
-
-    function change(item: string, delta: number) {
-        const currentStock = statee.inventory[item as keyof typeof statee.inventory] || 0;
-        statee.inventory[item as keyof typeof statee.inventory] = Math.max(0, currentStock + delta);
-        setCookie("bat_inventory", statee);
-    }
+    let allowed = $state(false);
 
     onMount(() => {
-        const access = getCookie("wayne_access");
-        if (access !== "true") {
-            window.location.href = "/";
+        onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            goto('/');
+            return;
         }
 
-        const saved = loadState();
-        if (saved && saved.devices && saved.inventory) {
-            statee = saved;
+        if (user.email === 'batman@wayne.com' && getCookie("batman_key")) {
+            allowed = true;
         } else {
-            setCookie("bat_inventory", statee);
+            goto('/');
         }
+        });
     });
-</script>
 
+
+    onMount(async () => {
+            const saved = await loadState();
+            if (saved) {
+                statee = saved;
+            } else {
+                await saveState();
+            }
+        });
+
+        function getCookie(name: string): string {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop()?.split(';').shift() || "";
+            return "";
+        }
+
+
+        async function loadState() {
+            const ref = doc(db, "batman", "arsenal");
+
+            const snap = await getDoc(ref);
+
+            if (snap.exists()) {
+                return snap.data();
+            }
+
+            return null;
+        }
+
+        async function saveState() {
+            await setDoc(
+                doc(db, "batman", "arsenal"),
+                statee
+            );
+        }
+
+        let statee = $state({
+            devices: {
+                sonic: "OFFLINE",
+                emp: "OFFLINE",
+                gel: "OFFLINE",
+                batmobile: "NOT READY",
+                suit: "NOT READY"
+            },
+            inventory: {
+                batarang: 100,
+                smoke: 100,
+                claw: 100,
+                dart: 100,
+                suit: 100
+            }
+        });
+
+        async function toggleDevice(key: 'sonic' | 'emp' | 'gel') {
+            statee.devices[key] =
+                statee.devices[key] === 'OFFLINE'
+                    ? 'ONLINE'
+                    : 'OFFLINE';
+
+            statee = { ...statee };
+
+            await saveState();
+        }
+
+        async function toggleVehicleSuit(key: 'batmobile' | 'suit') {
+            statee.devices[key] =
+                statee.devices[key] === 'NOT READY'
+                    ? 'READY'
+                    : 'NOT READY';
+
+            statee = { ...statee };
+
+            await saveState();
+        }
+
+        async function change(item: string, delta: number) {
+            const key = item as keyof typeof statee.inventory;
+
+            statee.inventory[key] = Math.max(
+                0,
+                statee.inventory[key] + delta
+            );
+
+            statee = { ...statee };
+
+            await saveState();
+        }
+</script>
+{#if allowed}
 <main class="bg-[#0e0b0b] min-h-screen">
     <section class="p-8 text-white">
         <h1 class="text-3xl font-bold mb-4">The Batcave</h1>
@@ -155,3 +194,4 @@
         </div>
     </section>
 </main>
+{/if}

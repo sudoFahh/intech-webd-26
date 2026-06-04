@@ -1,21 +1,29 @@
 <script>
 	import { onMount } from 'svelte';
+  import { auth } from '$lib/firebase.client';
+  import { onAuthStateChanged, signOut } from 'firebase/auth';
+  import { goto } from '$app/navigation';
 
-	function getCookie(name) {
-		const value = `; ${document.cookie}`;
-		const parts = value.split(`; ${name}=`);
-		if (parts.length === 2) return parts.pop().split(';').shift();
-		return '';
-	}
+  let allowed = $state(false);
 
-	onMount(() => {
-		const access = getCookie('wayne_access_ceo');
-		if (access !== 'true') {
-			window.location.href = '/';
-		}
-	});
+  onMount(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        goto('/');
+        return;
+      }
+
+      if (user.email === 'bruce@wayne.com') {
+        allowed = true;
+      } else {
+        goto('/');
+      }
+    });
+  });
+
 </script>
 
+{#if allowed}
 <main class="h-full bg-gray-50">
 	<h1>Wayne Internal Dashboard</h1>
 	<p>
@@ -115,3 +123,4 @@
 		</section>
 	</div>
 </main>
+{/if}
