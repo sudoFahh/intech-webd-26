@@ -5,6 +5,9 @@
 	let isSecretRevealed = false;
     let key = '';
 
+	let stuff = $state('404');
+	let stuff2 = $state('Not Found');
+
 	onMount(() => {
 		sessionStorage.removeItem('batman_buffer');
 	});
@@ -24,6 +27,13 @@
 			sessionStorage.setItem('batman_buffer', currentBuffer);
 
 			if (currentBuffer === targetSecret) {
+				stuff = "correct!"
+				stuff2 = "please goto /internal and login"
+				setTimeout(() => {
+					stuff="404";
+					stuff2="Not Found";
+				}, 2000);
+
 				isSecretRevealed = true;
 				sessionStorage.removeItem('batman_buffer');
                 key = Math.random().toString(36).substring(2, 15); // Generate a random key
@@ -36,4 +46,5 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-404 <br /> Not Found
+<p>{stuff}</p>
+<p>{stuff2}</p>
