@@ -136,18 +136,18 @@ async function handleJoinRoom() {
     </section>
 
     <br />
-
+    <div class="p-8">
     <section class="text-white">contacts:</section>
-    <a href="/wayne/batman/comms/alfred" class="text-white">Alfred (Butler)</a><br />
-    <a href="/wayne/batman/comms/gordon" class="text-white">James Gordon (GCPD)</a><br />
-    <a href="/wayne/batman/comms/oracle" class="text-white">Oracle (Intel)</a><br />
-    <a href="/wayne/batman/comms/lucius" class="text-white">Lucius Fox (R&D)</a><br />
-    <a href="/wayne/batman/comms/robin" class="text-white">Robin (Partner)</a><br />
+    <a href="/wayne/batman/comms/alfred" class="text-blue-500 hover:underline">Alfred (Butler)</a><br />
+    <a href="/wayne/batman/comms/gordon" class="text-blue-500 hover:underline">James Gordon (GCPD)</a><br />
+    <a href="/wayne/batman/comms/oracle" class="text-blue-500 hover:underline">Oracle (Intel)</a><br />
+    <a href="/wayne/batman/comms/lucius" class="text-blue-500 hover:underline">Lucius Fox (R&D)</a><br />
+    <a href="/wayne/batman/comms/robin" class="text-blue-500 hover:underline">Robin (Partner)</a><br />
 
     <br />
 
     <h2 class="text-xl text-white">Create a room</h2>
-    <button class="text-white" on:click={handleCreateRoom}>
+    <button class="text-blue-500 hover:underline" onclick={handleCreateRoom}>
       Generate Room Code
     </button>
 
@@ -164,9 +164,11 @@ async function handleJoinRoom() {
     />
 
     <br />
-    <button on:click={handleJoinRoom}>
+    <button class="text-blue-500 hover:underline" onclick={handleJoinRoom}>
       Join Room
     </button>
+
+    </div>
 
     {#if errorMessage}
       <p style="color: red; margin-top: 1rem;">{errorMessage}</p>

@@ -9,9 +9,9 @@
     import { goto } from '$app/navigation';
     let allowed = $state(false);
 
-    let scale = $state(1);
-    let translateX = $state(0);
-    let translateY = $state(0);
+    let zoomMultiplier = $state(1);
+    let mapX = $state(0);
+    let mapY = $state(0);
     let containerRef: HTMLDivElement | null = $state(null);
 
     let pins = $state<{ x: number; y: number }[]>([]);
@@ -30,7 +30,6 @@
             }
         });
     });
-
     function getCookie(name: string): string {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -38,43 +37,51 @@
         return "";
     }
 
-    // THIS is for putting PINS my MANS
+    // THIS is for putting PINS MY BROS
 
     function handleImageClick(event: MouseEvent) {
         if (!containerRef) return;
-
         const rect = containerRef.getBoundingClientRect();
-        
-        const clickX = event.clientX - rect.left;
-        const clickY = event.clientY - rect.top;
 
-        pins.push({ x: clickX, y: clickY });
+        const windowX = event.clientX - rect.left;
+        const windowY = event.clientY - rect.top;
+
+        const rawX = (windowX + mapX) / zoomMultiplier;
+        const rawY = (windowY + mapY) / zoomMultiplier;
+        pins.push({ x: rawX, y: rawY });
     }
 
-    // This is for ZOOOMING in MY MANS
+    // This is for ZOOOMING MY BROS
     
-    function handleWheel(event: WheelEvent) {
+function handleWheel(event: WheelEvent) {
         event.preventDefault();
+        if (!containerRef) return;
 
-        const zoomIntensity = 0.1;
+        const rect = containerRef.getBoundingClientRect();
+        const windowX = event.clientX - rect.left;
+        const windowY = event.clientY - rect.top;
 
-        const delta = event.deltaY < 0 ? 1 : -1;
-        
-        const newScale = Math.min(Math.max(scale + delta * zoomIntensity, 1), 6);
-
-        if (newScale === 1) {
-            translateX = 0;
-            translateY = 0;
-        } else if (containerRef) {
-            const rect = containerRef.getBoundingClientRect();
-            const mouseX = event.clientX - rect.left;
-            const mouseY = event.clientY - rect.top;
-            
-            translateX -= (mouseX - rect.width / 2) * (delta * zoomIntensity);
-            translateY -= (mouseY - rect.height / 2) * (delta * zoomIntensity);
+        if (event.deltaY < 0) {
+            if (zoomMultiplier === 1) {
+                zoomMultiplier = 2;
+                mapX = Math.min(Math.max(windowX * 2 - 390 / 2, 0), 390);
+                mapY = Math.min(Math.max(windowY * 2 - 780 / 2, 0), 780);
+            } else if (zoomMultiplier === 2) {
+                zoomMultiplier = 4;
+                mapX = Math.min(Math.max((windowX + mapX) * 2 - 390 / 2, 0), 390 * 3);
+                mapY = Math.min(Math.max((windowY + mapY) * 2 - 780 / 2, 0), 780 * 3);
+            }
+        } else if (event.deltaY > 0) {
+            if (zoomMultiplier === 4) {
+                zoomMultiplier = 2;
+                mapX = Math.min(Math.max((mapX + 390 / 2) / 2 - 390 / 2, 0), 390);
+                mapY = Math.min(Math.max((mapY + 780 / 2) / 2 - 780 / 2, 0), 780);
+            } else if (zoomMultiplier === 2) {
+                zoomMultiplier = 1;
+                mapX = 0;
+                mapY = 0;
+            }
         }
-
-        scale = newScale;
     }
 
     function removePin(indexToRemove: number, event: MouseEvent) {
@@ -83,6 +90,10 @@
     }
 
     // these spotify ads fryin me rn :sob:
+
+    // one day, 
+    // i am going to grow wings, 
+    // a chemical reaction.
 
 </script>
 
@@ -99,10 +110,10 @@
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
     </section>
 
-    <div bind:this={containerRef} class="relative overflow-hidden inline-block m-8 cursor-zoom-in rounded-lg select-none" style="width: 390px; height: 780px; isolation: isolate;" onclick={handleImageClick} onwheel={handleWheel} role="presentation">
-        <button><img src="/map.webp" alt="The Map of Gotham" width=390 height=780 class="transition-transform duration-200 ease-out origin-center pointer-events-none rounded-lg" style="transform: translate({translateX}px, {translateY}px) scale({scale});"/></button>
+    <div bind:this={containerRef} class="relative overflow-hidden inline-block m-8 cursor-crosshair rounded-lg select-none" style="width: 390px; height: 780px; isolation: isolate;" onclick={handleImageClick} onwheel={handleWheel} role="presentation">
+        <img src="/map.webp" alt="The Map of Gotham" class="absolute top-0 left-0 pointer-events-none rounded-lg" style="width: {390 * zoomMultiplier}px; height: {780 * zoomMultiplier}px; transform: translate({-mapX}px, {-mapY}px); max-width: none;"/>
         {#each pins as pin, index}
-            <button class="absolute bg-red-600 border-2 border-white rounded-full w-4 h-4 cursor-pointer z-10" style="left: {pin.x}px; top: {pin.y}px; transform: translate(-50%, -50%) translate({translateX / scale}px, {translateY / scale}px) scale({scale});" onclick={(e) => removePin(index, e)}></button>
+            <button class="absolute bg-red-600 border-2 border-white rounded-full w-3 h-3 cursor-pointer z-10" style="left: {pin.x * zoomMultiplier}px; top: {pin.y * zoomMultiplier}px; transform: translate(-50%, -50%) translate({-mapX}px, {-mapY}px);" onclick={(e) => removePin(index, e)}></button>
         {/each}
     </div>
 </main>
