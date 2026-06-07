@@ -108,6 +108,7 @@ function handleWheel(event: WheelEvent) {
         <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
         <p class="text-gray-400">Map of Gotham (You are here)</p>
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
     </section>
 
     <div bind:this={containerRef} class="relative overflow-hidden inline-block m-8 cursor-crosshair rounded-lg select-none" style="width: 390px; height: 780px; isolation: isolate;" onclick={handleImageClick} onwheel={handleWheel} role="presentation">

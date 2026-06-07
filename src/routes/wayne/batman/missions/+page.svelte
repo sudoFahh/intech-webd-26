@@ -6,6 +6,11 @@
     import { doc, getDoc, setDoc } from 'firebase/firestore';
     import { db } from '$lib/firebase.client';
 
+    let allowed = $state(false);
+    let newItem = $state('');
+    let todoList = $state([]);
+    let selectedDate = $state('');
+
     async function loadState() {
             const ref = doc(db, "batman", "missions");
 
@@ -24,11 +29,6 @@
                 { missions: todoList }
             );
         }
-
-    let allowed = $state(false);
-    let newItem = $state('');
-    let todoList = $state([]);
-    let selectedDate = $state('');
 
     onMount(() => {
         onAuthStateChanged(auth, (user) => {
@@ -102,6 +102,7 @@
         <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
         <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
     </section>
 <section class="p-8">
     <input bind:value={newItem} type="text" placeholder="New Mission...">

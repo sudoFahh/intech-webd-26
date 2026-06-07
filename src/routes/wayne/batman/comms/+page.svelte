@@ -133,6 +133,7 @@ async function handleJoinRoom() {
         <p class="text-gray-400">Communications Center (You are here)</p>
         <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
     </section>
 
     <br />

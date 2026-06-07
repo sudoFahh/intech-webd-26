@@ -62,14 +62,7 @@
     <!-- CONTACTS -->
     <div class="flex flex-col gap-2 w-64">
 
-        <button class="border p-3" on:click={() => openChat('lucius')}>Lucius Fox</button>
-        <button class="border p-3" on:click={() => openChat('selina')}>Selina Kyle</button>
-        <button class="border p-3" on:click={() => openChat('harvey')}>Harvey Dent</button>
-        <button class="border p-3" on:click={() => openChat('william')}>William Chang</button>
-        <button class="border p-3" on:click={() => openChat('john')}>John Brown</button>
-        <button class="border p-3" on:click={() => openChat('serena')}>Serena Chen</button>
-        <button class="border p-3" on:click={() => openChat('jack')}>Jack Cooper</button>
-        <button class="border p-3" on:click={() => openChat('jason')}>Jason Bourne</button>
+        <p>manik make sure to add lucius fox, tam fox, william earle, miranda kane, alfred pennyworth, philip kane (any 5)</p>
 
     </div>
 

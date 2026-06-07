@@ -123,6 +123,7 @@
         <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
         <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
     </section>
 
     <section class="p-8 flex flex-col gap-4">

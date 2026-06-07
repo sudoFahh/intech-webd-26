@@ -105,6 +105,7 @@
         <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
         <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
         <p class="text-gray-400">The Bat Jukebox (You are here)</p>
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
     </section>
     <br />
     <input class="text-white" type="file" accept="audio/mp3, audio/*" disabled={isUploading} onchange={handleFileUpload}/> <br />

@@ -44,6 +44,7 @@
 <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
 <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
 <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
+<a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
 <br />
 <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" onclick={logout}>Log Out</button>
 </section>
