@@ -140,9 +140,9 @@
     <input
       bind:value={postText}
       placeholder="Type your message..."
-      on:keydown={(e) => e.key === 'Enter' && postMessage()}
+      onkeydown={(e) => e.key === 'Enter' && postMessage()}
     />
-    <button on:click={postMessage}>Send</button>
+    <button onclick={postMessage}>Send</button>
   </div>
 <a href="/wayne/batman/comms">go back to comms</a>
 {:else if authReady}

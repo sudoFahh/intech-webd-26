@@ -28,7 +28,7 @@
 </script>
 
 {#if allowed}
-<main>
+<main class="p-8">
   <h1>Wayne Internal Dashboard</h1>
 
   <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
@@ -38,20 +38,7 @@
   <p class="text-gray-400">CEO's Office (You are here)</p>
   <a href="/wayne/ceo/financials" class="text-blue-500 hover:underline">Financial Reports</a><br />
   <a href="/wayne/ceo/comms" class="text-blue-500 hover:underline">Communication Center</a><br />
-
-  <section class="mb-6 p-4 border rounded">
-    <h2 class="text-lg font-bold">EXECUTIVE STATUS</h2>
-
-    <div class="mt-2 text-sm space-y-1">
-      <p>Company Status: Stable</p>
-      <p>Global Operations: Active in 42 regions</p>
-      <p>Security Level: Tier 3 Clearance</p>
-      <p>Active Alerts: 0 Critical / 3 Monitoring</p>
-    </div>
-  </section>
-
-  <button onclick={logout}>
-    Log Out
-  </button>
+  <br />
+<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" onclick={logout}>Log Out</button>
 </main>
 {/if}

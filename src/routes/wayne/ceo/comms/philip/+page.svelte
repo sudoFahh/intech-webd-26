@@ -23,7 +23,7 @@
     if (!browser) return;
 
     const q = query(
-      collection(db, 'lucius_chat'),
+      collection(db, 'philip_ceo_chat'),
       orderBy('createdAt', 'asc')
     );
 
@@ -48,15 +48,15 @@
     const userMessage = postText;
 
     try {
-      await addDoc(collection(db, 'lucius_chat'), {
+      await addDoc(collection(db, 'philip_ceo_chat'), {
         text: userMessage,
         createdAt: serverTimestamp(),
-        createdBy: currentUser.displayName ?? 'Batman'
+        createdBy: currentUser.displayName ?? 'Bruce Wayne'
       });
 
       postText = '';
 
-      const response = await fetch('/api/lucius', {
+      const response = await fetch('/api/philip_ceo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -68,10 +68,10 @@
 
       const data = await response.json();
 
-      await addDoc(collection(db, 'lucius_chat'), {
+      await addDoc(collection(db, 'philip_ceo_chat'), {
         text: data.reply,
         createdAt: serverTimestamp(),
-        createdBy: 'Lucius'
+        createdBy: 'philip_ceo'
       });
 
     } catch (e) {
@@ -144,7 +144,7 @@
     />
     <button onclick={postMessage}>Send</button>
   </div>
-<a href="/wayne/batman/comms">go back to comms</a>
+<a href="/wayne/ceo/comms">go back to comms</a>
 {:else if authReady}
   <p>Sign in to send messages.</p>
 {/if}
