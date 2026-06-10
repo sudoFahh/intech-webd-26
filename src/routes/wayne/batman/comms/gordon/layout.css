@@ -1,0 +1,57 @@
+body,
+main,
+div,
+section,
+article,
+aside,
+header,
+footer,
+nav,
+button,
+input,
+textarea,
+select,
+a,
+p,
+span,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: initial;
+    padding: initial;
+    background: initial;
+    border: initial;
+    border-radius: initial;
+    box-shadow: initial;
+    outline: initial;
+    display: initial;
+    flex: initial;
+    flex-direction: initial;
+    gap: initial;
+    width: initial;
+    height: initial;
+    min-width: initial;
+    min-height: initial;
+    max-width: initial;
+    max-height: initial;
+    overflow: initial;
+    overflow-x: initial;
+    overflow-y: initial;
+    position: initial;
+    top: initial;
+    left: initial;
+    right: initial;
+    bottom: initial;
+    transform: initial;
+    transition: initial;
+    opacity: initial;
+    cursor: initial;
+    text-decoration: initial;
+    color: initial;
+}

@@ -7,8 +7,9 @@
     import { auth } from '$lib/firebase.client';
     import { onAuthStateChanged } from 'firebase/auth';
     import { goto } from '$app/navigation';
-    let allowed = $state(false);
 
+    let allowed = $state(false);
+    let sidebarOpen = $state(true);
     let zoomMultiplier = $state(1);
     let mapX = $state(0);
     let mapY = $state(0);
@@ -97,19 +98,37 @@ function handleWheel(event: WheelEvent) {
 
 </script>
 
+<svelte:head>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</svelte:head>
+
 {#if allowed}
-<main class="bg-[#0e0b0b] min-h-screen">
-    <section class="p-8 text-white">
-        <h1 class="text-3xl font-bold mb-4">The Batcave</h1>
-        <p>Welcome to the Batcave, Batman. <br /> What tools would you like to use?</p> <br />
-        <a href="/wayne/batman" class="text-blue-500 hover:underline">Access Batcomputer</a> <br />
-        <a href="/wayne/batman/arsenal" class="text-blue-500 hover:underline">Access Arsenal</a> <br />
-        <a href="/wayne/batman/missions" class="text-blue-500 hover:underline">Access Missions</a> <br />
-        <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
-        <p class="text-gray-400">Map of Gotham (You are here)</p>
-        <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a> <br />
-        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
-    </section>
+    <main class="bg-[#0e0b0b] min-h-screen flex overflow-hidden text-white">
+  <div class={`grid overflow-hidden transition-all duration-300 shrink-0 ${sidebarOpen ? 'grid-cols-[300px]' : 'grid-cols-[0px]'}`}>
+    <div class="overflow-hidden min-w-0 flex flex-col gap-3 p-6 border-r border-neutral-800 bg-[#0e0b0b]">
+      <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined self-end text-white cursor-pointer">close</button>
+      <h1 class="text-2xl font-bold mb-2">The Batcave</h1>
+      <p class="text-sm text-gray-400 mb-4">Welcome, Batman.</p>
+      <nav class="flex flex-col gap-2">
+        <a href="/wayne/batman" class="text-blue-500 hover:underline">Access Batcomputer</a>
+        <a href="/wayne/batman/arsenal" class="text-blue-500 hover:underline">Access Arsenal</a>
+        <a href="/wayne/batman/missions" class="text-blue-500 hover:underline">Access Missions</a>
+        <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a>
+        <p class="text-gray-500 font-semibold mt-2">Map of Gotham</p>
+        <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a>
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto relative p-8">
+    {#if !sidebarOpen}
+      <div class="absolute top-6 left-6">
+        <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined text-white cursor-pointer">menu</button>
+      </div>
+    {/if}
+
+    <div class={sidebarOpen ? "" : "ml-10"}>
 
     <div bind:this={containerRef} class="relative overflow-hidden inline-block m-8 cursor-crosshair rounded-lg select-none" style="width: 390px; height: 780px; isolation: isolate;" onclick={handleImageClick} onwheel={handleWheel} role="presentation">
         <img src="/map.webp" alt="The Map of Gotham" class="absolute top-0 left-0 pointer-events-none rounded-lg" style="width: {390 * zoomMultiplier}px; height: {780 * zoomMultiplier}px; transform: translate({-mapX}px, {-mapY}px); max-width: none;"/>

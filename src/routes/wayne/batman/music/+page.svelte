@@ -16,6 +16,7 @@
     let isUploading = $state(false);
     let uploadStatus = $state('');
     let allowed = $state(false);
+    let sidebarOpen = $state(true);  
     let tracks = $state<{ id: string, title: string, url: string }[]>([]);
     let currentTrackUrl = $state('');
 
@@ -94,19 +95,38 @@
         }
     }
 </script>
+
+<svelte:head>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</svelte:head>
+
 {#if allowed}
-    <main class="bg-[#0e0b0b] min-h-screen">
-    <section class="p-8 text-white">
-        <h1 class="text-3xl font-bold mb-4">The Batcave</h1>
-        <p>Welcome to the Batcave, Batman. <br /> What tools would you like to use?</p> <br />
-        <a href="/wayne/batman" class="text-blue-500 hover:underline">Access Batcomputer</a> <br />
-        <a href="/wayne/batman/arsenal" class="text-blue-500 hover:underline">Access Arsenal</a> <br />
-        <a href="/wayne/batman/missions" class="text-blue-500 hover:underline">Access Missions</a> <br />
-        <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a> <br />
-        <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a> <br />
-        <p class="text-gray-400">The Bat Jukebox (You are here)</p>
-        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a> <br />
-    </section>
+<main class="bg-[#0e0b0b] min-h-screen flex overflow-hidden text-white">
+  <div class={`grid overflow-hidden transition-all duration-300 shrink-0 ${sidebarOpen ? 'grid-cols-[300px]' : 'grid-cols-[0px]'}`}>
+    <div class="overflow-hidden flex flex-col gap-3 p-6 border-r border-neutral-800 bg-[#0e0b0b]">
+      <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined self-end text-white cursor-pointer">close</button>
+      <h1 class="text-2xl font-bold mb-2">The Batcave</h1>
+      <p class="text-sm text-gray-400 mb-4">Welcome, Batman.</p>
+      <nav class="flex flex-col gap-2">
+        <a href="/wayne/batman" class="text-blue-500 hover:underline">Access Batcomputer</a>
+        <a href="/wayne/batman/arsenal" class="text-blue-500 hover:underline">Access Arsenal</a>
+        <a href="/wayne/batman/missions" class="text-blue-500 hover:underline">Access Missions</a>
+        <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a>
+        <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a>
+        <p class="text-gray-500 font-semibold mt-2">Bat Jukebox</p>
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto relative p-8">
+    {#if !sidebarOpen}
+      <div class="absolute top-6 left-6">
+        <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined text-white cursor-pointer">menu</button>
+      </div>
+    {/if}
+
+    <div class={sidebarOpen ? "" : "ml-10"}>
     <br />
     <input class="text-white" type="file" accept="audio/mp3, audio/*" disabled={isUploading} onchange={handleFileUpload}/> <br />
     {#if uploadStatus}

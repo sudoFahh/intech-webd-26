@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './layout.css'
   import { browser } from '$app/environment';
   import { auth, db } from '$lib/firebase.client';
   import { onMount, onDestroy } from 'svelte';
@@ -122,7 +123,7 @@
 
   {#each posts as post (post.id)}
     <div class="chat-message">
-      <div style="font-size: 0.8rem; color: #555;">
+      <div style="font-size: 0.8rem; color: #f0f0f0;">
         {post.createdBy}
         @
         {post.createdAt?.seconds
@@ -144,7 +145,7 @@
     />
     <button onclick={postMessage}>Send</button>
   </div>
-<a href="/wayne/batman/comms">go back to comms</a>
+<a href="/wayne/batman/comms" class="text-white">go back to comms</a>
 {:else if authReady}
-  <p>Sign in to send messages.</p>
+  <p class="text-white">Sign in to send messages.</p>
 {/if}

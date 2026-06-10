@@ -60,4 +60,4 @@
  </form>
  </div>
  <p>{loginmessage}</p>
- <a href="/">go home</a>
+ <a href="/" class="underline">go home</a>
