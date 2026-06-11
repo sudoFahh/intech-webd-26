@@ -35,8 +35,8 @@
 	</div>
 
 	<div class="fixed bottom-3 right-4 group">
-		<footer class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition">
-			<a href="/internal" class="text-gray-300">internal</a>
+		<footer class="text-gray-400 opacity-0 group-hover:opacity-100 transition">
+			<a href="/internal" class="text-gray-400 text-xs">internal</a>
 		</footer>
 	</div>
 </main>

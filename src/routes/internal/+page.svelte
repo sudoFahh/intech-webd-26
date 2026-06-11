@@ -25,15 +25,16 @@
     const user = result.user;
 
     session.set({
-  loggedIn: true,
-  loading: false,
-  user: {
-    displayName: user.displayName,
-    email: user.email,
-    photoURL: user.photoURL,
-    uid: user.uid
-  }
-});
+    loggedIn: true,
+    loading: false,
+    user: {
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      uid: user.uid
+    }
+  });
+
     if(user.email === 'bruce@wayne.com'){
         loginmessage = "Welcome, Mr. Bruce. Redirecting..."
         await goto('/wayne/ceo')
@@ -50,14 +51,15 @@
   }
 }
 </script>
-
+<main class="p-8">
 <div class="login-form">
  <h1>Login</h1>
- <form on:submit|preventDefault={loginWithMail}>
+ <form onsubmit={loginWithMail}>
   <input bind:value={email} type="text" placeholder="Email" />
   <input bind:value={password} type="password" placeholder="Password" />
   <button type="submit">Login</button>
  </form>
  </div>
- <p>{loginmessage}</p>
+ <p>{loginmessage}</p> <br />
  <a href="/" class="underline">go home</a>
+</main>

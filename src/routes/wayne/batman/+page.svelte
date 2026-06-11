@@ -72,7 +72,9 @@
         <a href="/wayne/batman/comms" class="text-blue-500 hover:underline">Access Communication Center</a>
         <a href="/wayne/batman/maps" class="text-blue-500 hover:underline">Access the Map of Gotham</a>
         <a href="/wayne/batman/music" class="text-blue-500 hover:underline">Access the Bat Jukebox</a>
-        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline">Access Notes</a>
+        <a href="/wayne/batman/notes" class="text-blue-500 hover:underline mb-2">Access Notes</a>
+        <hr />
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition w-full mt-2" onclick={logout}>Log Out</button>
       </nav>
     </div>
   </div>
@@ -86,8 +88,14 @@
 
     <div class={sidebarOpen ? "" : "ml-10"}>
     <br />
-<p>Hello Dark Knight. Are you ready for fighting crime? </p> <br /> <br /> <div class="rounded-lg border p-4 w-100"><span class="text-2xl">Time: {timestamp}</span> <br /> <span class="text-2xl">Weather: {weather}</span></div> <br /> 
-<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" onclick={logout}>Log Out</button>
+<div class="flex flex-col items-center justify-center text-center gap-6">
+<p>Hello Dark Knight. Are you ready for fighting crime? </p> <center> <br /> <br /> <div class="rounded-lg border p-4 w-full max-w-4xl"> <div class="rounded-lg border p-4 w-100"><span class="text-2xl">Time: {timestamp}</span> <br /> <span class="text-2xl">Weather: {weather}</span></div> <br /> 
+<br />
+
+<iframe src="https://intechwebd26news.wordpress.com/" height="500px" width="800px"></iframe> <br />
+</div>
+</center>
+</div>
 </main>
 <style>
     html, body {

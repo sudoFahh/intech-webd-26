@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './layout.css'
   import { browser } from '$app/environment';
   import { auth, db } from '$lib/firebase.client';
   import { onMount, onDestroy } from 'svelte';
@@ -68,10 +69,10 @@
 
       const data = await response.json();
 
-      await addDoc(collection(db, 'lucius_ceo_chat_ceo'), {
+      await addDoc(collection(db, 'lucius_ceo_chat'), {
         text: data.reply,
         createdAt: serverTimestamp(),
-        createdBy: 'lucius_ceo'
+        createdBy: 'Lucius'
       });
 
     } catch (e) {

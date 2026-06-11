@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './layout.css'
   import { browser } from '$app/environment';
   import { auth, db } from '$lib/firebase.client';
   import { onMount, onDestroy } from 'svelte';
@@ -71,7 +72,7 @@
       await addDoc(collection(db, 'alfred_ceo_chat'), {
         text: data.reply,
         createdAt: serverTimestamp(),
-        createdBy: 'alfred_ceo'
+        createdBy: 'Alfred'
       });
 
     } catch (e) {
@@ -122,7 +123,7 @@
 
   {#each posts as post (post.id)}
     <div class="chat-message">
-      <div style="font-size: 0.8rem; color: #555;">
+      <div style="font-size: 0.8rem;  color: #555;">
         {post.createdBy}
         @
         {post.createdAt?.seconds

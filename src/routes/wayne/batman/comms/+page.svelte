@@ -1,5 +1,4 @@
 <script lang="ts">
-  import './layout.css';
   import { onAuthStateChanged } from 'firebase/auth';
   import { auth, db } from '$lib/firebase.client';
   import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
