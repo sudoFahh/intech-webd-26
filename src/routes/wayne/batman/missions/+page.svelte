@@ -131,7 +131,7 @@
         <button class="text-white" onclick={addToList}>Add</button>
         <br/>
         {#each todoList as item, index}
-        <button onclick={() => makeClear(index)} class="text-white text-2xl"class:checked={item.status}>{item.text}</button> <br />
+        <button onclick={() => makeClear(index)} class="text-white text-2xl" class:checked={item.status}>{item.text}</button> <br />
         <sup class="text-white" onclick={() => removeFromList(index)}>remove</sup>
         <br/>
         {/each} 
