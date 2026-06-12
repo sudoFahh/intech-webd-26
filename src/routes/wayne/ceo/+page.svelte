@@ -83,7 +83,6 @@
     saveState();
   }
 
-  // Added index argument here so Svelte knows which mission you clicked
   function makeClear(index) {
     todoList[index].status = !todoList[index].status;
     todoList = [...todoList];
