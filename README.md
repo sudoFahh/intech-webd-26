@@ -1,42 +1,38 @@
-# sv
+# Manik Sharma 9H's WebD for Intech '26
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Instructions:
 
-## Creating a project
+The page opens to a cover page.
+To login to a dashboard:
+go the the bottom right corner of the page. you will see some text, "internal".
 
-If you're seeing this, you've probably already done this step. Congrats!
+Click it or navigate to /internal.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+(i) CEO's Dashboard:
 
-To recreate this project with the same configuration:
+Email: bruce@wayne.com
 
-```sh
-# recreate this project
-npx sv@0.15.3 create --template minimal --types ts --add prettier tailwindcss="plugins:typography,forms" --install npm ./
-```
+Password: BruceWayne@123
 
-## Developing
+(ii) Batman's Dashboard:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+navigate to /404
 
-```sh
-npm run dev
+and type in the page (not devTools) the text:
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+"brucewayneisbatman"
+(no quotes)
 
-## Building
+then navigate back to /internal
 
-To create a production version of your app:
+and type in:
 
-```sh
-npm run build
-```
+Email: batman@wayne.com
 
-You can preview the production build with `npm run preview`.
+Password: BruceWayneisBatman@123
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Thank you!
+
+If you have any problems or questions, please contact Manik (Me) on Discord
+
+Discord - compactdiscdrive
