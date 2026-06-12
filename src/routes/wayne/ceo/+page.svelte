@@ -102,7 +102,7 @@
 {#if allowed}
 <main class="bg-[#fcfcfc] text-neutral-900 min-h-screen flex overflow-hidden">
   
-  <!-- SIDEBAR -->
+
   <div class={`grid overflow-hidden transition-all duration-300 shrink-0 ${sidebarOpen ? 'grid-cols-[300px]' : 'grid-cols-[0px]'}`}>
     <div class="overflow-hidden flex flex-col gap-3 p-6 border-r border-neutral-200 bg-[#f5f5f5] h-full">
       <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined self-end text-neutral-600 cursor-pointer hover:text-black">
@@ -120,7 +120,6 @@
     </div>
   </div>
 
-  <!-- MAIN CENTER AREA -->
   <div class="flex-1 overflow-y-auto p-8 relative">
     {#if !sidebarOpen}
       <div class="absolute top-6 left-6">
