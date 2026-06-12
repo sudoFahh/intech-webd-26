@@ -181,15 +181,7 @@ async function handleJoinRoom() {
       <br /><br />
 
       <h2 class="text-xl text-white font-bold">Join a room</h2>
-      <input
-        type="text"
-        id="a"
-        maxlength="8"
-        bind:value={joinCode}
-        placeholder="Enter 8-char code"
-        class="bg-neutral-900 border border-neutral-700 text-white placeholder-gray-500"
-        style="text-transform: uppercase; padding: 0.5rem;"
-      />
+      <input type="text" id="a" maxlength="8" bind:value={joinCode} placeholder="Enter 8-char code" class="bg-neutral-900 border border-neutral-700 text-white placeholder-gray-500" style="text-transform: uppercase; padding: 0.5rem;"/>
 
       <br /><br />
       <button class="text-blue-500 hover:underline" onclick={handleJoinRoom}>

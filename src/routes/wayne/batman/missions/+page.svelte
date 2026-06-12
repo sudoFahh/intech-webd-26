@@ -86,7 +86,7 @@
         saveState();
     }
 
-    function makeClear() {
+    function makeClear(index) {
         todoList[index].status = !todoList[index].status;
         todoList = [...todoList];
         saveState();
@@ -124,18 +124,18 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-<section class="p-8">
-    <input bind:value={newItem} type="text" placeholder="New Mission...">
-    <input type="date" bind:value={selectedDate} />
-    <button class="text-white" onclick={addToList}>Add</button>
-    <br/>
-    {#each todoList as item, index}
-	<button onclick={makeClear} class="text-white text-2xl"class:checked={item.status}>{item.text}</button> <br />
-	<sup class="text-white" onclick={() => removeFromList(index)}>remove</sup>
-	<br/>
-    {/each} 
-    <button onclick={removeCompleted} class="text-white">remove completed</button>
-</section>
+    <section class="p-8">
+        <input bind:value={newItem} type="text" placeholder="New Mission...">
+        <input type="date" bind:value={selectedDate} />
+        <button class="text-white" onclick={addToList}>Add</button>
+        <br/>
+        {#each todoList as item, index}
+        <button onclick={() => makeClear(index)} class="text-white text-2xl"class:checked={item.status}>{item.text}</button> <br />
+        <sup class="text-white" onclick={() => removeFromList(index)}>remove</sup>
+        <br/>
+        {/each} 
+        <button onclick={removeCompleted} class="text-white">remove completed</button>
+    </section>
 </div>
 </main>
 {/if}

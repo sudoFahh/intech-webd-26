@@ -89,6 +89,7 @@
     <div class={sidebarOpen ? "" : "ml-10"}>
     <br />
 <div class="flex flex-col items-center justify-center text-center gap-6">
+<h2 class="font-black tracking-tight mb-4 text-white text-3xl">Hello, Batman.</h2>
 <p>Hello Dark Knight. Are you ready for fighting crime? </p> <center> <br /> <br /> <div class="rounded-lg border p-4 w-full max-w-4xl"> <div class="rounded-lg border p-4 w-100"><span class="text-2xl">Time: {timestamp}</span> <br /> <span class="text-2xl">Weather: {weather}</span></div> <br /> 
 <br />
 
