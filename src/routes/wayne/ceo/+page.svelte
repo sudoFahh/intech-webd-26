@@ -28,7 +28,7 @@
   });
 
   async function loadState() {
-    const ref = doc(db, "batman", "missions");
+    const ref = doc(db, "ceo", "events");
     const snap = await getDoc(ref);
     if (snap.exists()) {
       return snap.data().missions ?? [];
@@ -38,7 +38,7 @@
 
   async function saveState() {
     await setDoc(
-      doc(db, "batman", "missions"),
+      doc(db, "ceo", "events"),
       { missions: todoList }
     );
   }
