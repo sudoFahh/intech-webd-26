@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Our Products</title>
+</svelte:head>
+
 <main class="flex min-h-screen flex-col gap-2 bg-gray-100">
 	<header class="flex items-center gap-56 bg-gray-200 px-8 -mx-6 h-30">
 		<div>

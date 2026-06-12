@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Internal</title>
+</svelte:head>
+
 <script lang="ts">
 // login/+page.svelte
  import { session } from '$lib/session';
