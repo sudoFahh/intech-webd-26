@@ -132,9 +132,9 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-      <h1 class="text-3xl font-black tracking-tight mb-4">Wayne Internal Dashboard</h1>
+      <h1 class="text-3xl font-black tracking-tight mb-4">CEO's Office</h1>
       <p class="text-neutral-600 max-w-2xl mb-8">
-        Welcome, Bruce Wayne. Here you can access all internal resources, financial reports, and operations details related to Wayne Enterprises.
+        Welcome, Mr. Wayne. Here you can access all internal resources, financial reports, and operations details related to Wayne Enterprises.
       </p>
 
       <section>

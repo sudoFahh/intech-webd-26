@@ -129,7 +129,7 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-
+    <h2 class="text-3xl font-black tracking-tight mb-4 text-white">Notes</h2>
     <section class="p-8">
         <div class="wrap">
             <textarea 

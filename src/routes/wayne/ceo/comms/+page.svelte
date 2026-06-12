@@ -132,9 +132,9 @@ async function handleJoinRoom() {
       <p class="text-sm text-neutral-600 mb-4">Welcome, Bruce Wayne.</p>
 
       <nav class="flex flex-col gap-2">
-        <p class="text-neutral-500">CEO's Office</p>
+        <a href="/wayne/ceo" class="text-blue-500 hover:underline">CEO's Office</a>
         <a href="/wayne/ceo/financials" class="text-blue-600 hover:underline">Financial Reports</a>
-        <p class="text-neutral-500">Communication Center (You are here)</p>
+        <p class="text-neutral-500">Communication Center</p>
       </nav>
     </div>
   </div>
@@ -150,14 +150,7 @@ async function handleJoinRoom() {
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-
-      <h1>Wayne Internal Dashboard</h1>
-
-      <p>Welcome, Bruce Wayne. Here you can access all internal resources and information related to Wayne Enterprises.</p>
-
-      <br />
-
-      <br /> 
+      <h2 class="text-3xl font-black tracking-tight mb-4">Communication Center</h2>
       <div> 
         <section>contacts:</section>
         <a href="/wayne/ceo/comms/alfred" class="text-blue-500 hover:underline">Alfred Pennyworth</a>
@@ -170,35 +163,23 @@ async function handleJoinRoom() {
         <br /> 
         <a href="/wayne/ceo/comms/philip" class="text-blue-500 hover:underline">Philip Kane</a>
         <br /> <br />
-
       <h2 class="text-xl">Create a room</h2>
-
-      <button class="text-blue-500 hover:underline" onclick={handleCreateRoom}>
-        Generate Room Code
-      </button>
-
+      <button class="text-blue-500 hover:underline" onclick={handleCreateRoom}>Generate Room Code</button>
       <br /><br />
-
       <h2 class="text-xl">Join a room</h2>
-
       <input type="text" maxlength="8" bind:value={joinCode} placeholder="Enter 8-char code" class="border border-neutral-300 rounded px-3 py-2" style="text-transform: uppercase;"/>
-
       <br /><br />
-
-      <button class="text-blue-500 hover:underline" onclick={handleJoinRoom}>
-        Join Room
-      </button>
-
+      <button class="text-blue-500 hover:underline" onclick={handleJoinRoom}>Join Room</button>
       {#if errorMessage}
         <p class="text-red-500 mt-4">{errorMessage}</p>
       {/if}
 
     </div>
   </div>
+  </div>
 
 </main>
 {/if}
-```
 
 
 <style>

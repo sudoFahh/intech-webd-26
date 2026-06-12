@@ -127,10 +127,10 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-    <br />
-    <input class="text-white" type="file" accept="audio/mp3, audio/*" disabled={isUploading} onchange={handleFileUpload}/> <br />
+    <h2 class="text-3xl font-black tracking-tight mb-4 text-white">Music</h2>
+    <input class="text-blue-500 hover:underline" type="file" accept="audio/mp3, audio/*" disabled={isUploading} onchange={handleFileUpload}/> <br />
     {#if uploadStatus}
-        <p class="text-white" >{uploadStatus}</p>
+        <p class="text-blue-500 hover:underline" >{uploadStatus}</p>
     {/if}
 
     {#if currentTrackUrl}
@@ -139,7 +139,7 @@
     <ul class="text-white">
         {#each tracks as track}
             <li class="my-2">
-                <button onclick={() => currentTrackUrl = track.url} class="text-blue-400 hover:underline text-left">
+                <button onclick={() => currentTrackUrl = track.url} class="text-blue-500 hover:underline">
                     Play: {track.title}
                 </button>
             </li>

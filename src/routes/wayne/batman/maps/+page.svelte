@@ -38,7 +38,6 @@
         return "";
     }
 
-    // THIS is for putting PINS MY BROS
 
     function handleImageClick(event: MouseEvent) {
         if (!containerRef) return;
@@ -51,8 +50,6 @@
         const rawY = (windowY + mapY) / zoomMultiplier;
         pins.push({ x: rawX, y: rawY });
     }
-
-    // This is for ZOOOMING MY BROS
     
 function handleWheel(event: WheelEvent) {
         event.preventDefault();
@@ -89,8 +86,6 @@ function handleWheel(event: WheelEvent) {
         event.stopPropagation();
         pins.splice(indexToRemove, 1);
     }
-
-    // these spotify ads fryin me rn :sob:
 
     // one day, 
     // i am going to grow wings, 
@@ -129,7 +124,7 @@ function handleWheel(event: WheelEvent) {
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-
+    <h2 class="text-3xl font-black tracking-tight mb-4 text-white">Map of Gotham</h2>
     <div bind:this={containerRef} class="relative overflow-hidden inline-block m-8 cursor-crosshair rounded-lg select-none" style="width: 390px; height: 780px; isolation: isolate;" onclick={handleImageClick} onwheel={handleWheel} role="presentation">
         <img src="/map.webp" alt="The Map of Gotham" class="absolute top-0 left-0 pointer-events-none rounded-lg" style="width: {390 * zoomMultiplier}px; height: {780 * zoomMultiplier}px; transform: translate({-mapX}px, {-mapY}px); max-width: none;"/>
         {#each pins as pin, index}

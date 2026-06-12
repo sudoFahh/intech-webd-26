@@ -124,7 +124,7 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-
+      <h2 class="text-3xl font-black tracking-tight mb-4 text-white">Arsenal</h2>
       <section class="flex flex-col gap-4">
           <h2 class="text-2xl text-white">Devices:</h2>
           <div class="flex flex-wrap gap-4">

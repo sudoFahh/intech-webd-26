@@ -30,12 +30,9 @@
 
 {#if allowed}
 <main class="bg-[#fcfcfc] text-neutral-900 min-h-screen flex overflow-hidden">
-  
   <div class={`grid overflow-hidden transition-all duration-300 shrink-0 ${sidebarOpen ? 'grid-cols-[300px]' : 'grid-cols-[0px]'}`}>
     <div class="overflow-hidden flex flex-col gap-3 p-6 border-r border-neutral-200 bg-[#f5f5f5] h-full">
-      <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined self-end text-neutral-600 cursor-pointer hover:text-black">
-        close
-      </button>
+      <button onclick={() => sidebarOpen = !sidebarOpen} class="material-symbols-outlined self-end text-neutral-600 cursor-pointer hover:text-black">close</button>
       <h1 class="text-2xl font-bold mb-2 text-neutral-800">Wayne Enterprises</h1>
       <p class="text-sm text-neutral-600 mb-4">Welcome, Bruce Wayne.</p>
       <nav class="flex flex-col gap-2">
@@ -57,6 +54,7 @@
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
+  <h2 class="text-3xl font-black tracking-tight mb-4">Financial Reports</h2>
 	<a href="/pdfs/1.pdf" class="text-blue-500 hover:underline">First Financial Report</a> <br />
 	<a href="/pdfs/2.pdf" class="text-blue-500 hover:underline">Second Financial Report</a> <br />
 	<a href="/pdfs/3.pdf" class="text-blue-500 hover:underline">Third Financial Report</a> <br />

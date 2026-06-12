@@ -153,7 +153,6 @@ async function handleJoinRoom() {
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
-
   <div class="flex-1 overflow-y-auto relative p-8">
     {#if !sidebarOpen}
       <div class="absolute top-6 left-6">
@@ -164,6 +163,7 @@ async function handleJoinRoom() {
     {/if}
 
     <div class={sidebarOpen ? "" : "ml-10"}>
+      <h2 class="text-3xl font-black tracking-tight mb-4 text-white">Communication Center</h2>
       <section class="text-white font-bold mb-2">contacts:</section>
       <a href="/wayne/batman/comms/alfred" class="text-blue-500 hover:underline">Alfred (Butler)</a><br />
       <a href="/wayne/batman/comms/gordon" class="text-blue-500 hover:underline">James Gordon (GCPD)</a><br />
