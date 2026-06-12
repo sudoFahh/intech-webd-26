@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 
-	const targetSecret = 'brucewayneisbatman';
+	const targetSecret = atob('YnJ1Y2V3YXluZWlzYmF0bWFu');
 	let isSecretRevealed = false;
     let key = '';
 
@@ -44,7 +44,7 @@
 	}
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
+<svelte:window onkeydown={handleKeydown} />
 
 <p>{stuff}</p>
 <p>{stuff2}</p>
