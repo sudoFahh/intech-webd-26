@@ -81,7 +81,7 @@ async function handleCreateRoom() {
   try {
     const code = await createRoom(currentUser);
     sessionStorage.setItem('lastRoomCode', code);
-    window.location.assign(`/wayne/batman/comms/room/${code}`);
+    window.location.assign(`/wayne/ceo/comms/room/${code}`);
   } catch (e) {
     console.error(e);
     errorMessage = 'Failed to create room';
@@ -107,7 +107,7 @@ async function handleJoinRoom() {
     }
 
     sessionStorage.setItem('lastRoomCode', code);
-    window.location.assign(`/wayne/batman/comms/room/${code}`);
+    window.location.assign(`/wayne/ceo/comms/room/${code}`);
   } catch (e) {
     console.error(e);
     errorMessage = 'Failed to join room';
