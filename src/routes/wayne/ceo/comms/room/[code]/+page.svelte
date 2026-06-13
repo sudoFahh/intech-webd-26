@@ -47,7 +47,7 @@
       await addDoc(collection(db, `rooms/${roomCode}/messages`), {
         text: postText,
         createdAt: serverTimestamp(),
-        createdBy: currentUser.displayName ?? 'Batman'
+        createdBy: currentUser.displayName ?? 'Bruce Wayne'
       });
 
       postText = '';
@@ -132,7 +132,7 @@
     />
     <button on:click={postMessage}>Send</button>
   </div>
-<a href="/wayne/batman/comms">go back to comms</a>
+<a href="/wayne/ceo/comms">go back to comms</a>
 {:else if authReady}
   <p>Sign in to send messages.</p>
 {/if}
